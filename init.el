@@ -8,23 +8,23 @@
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 
-;; (setq my_shell_output
-;;       (substring
-;;        (shell-command-to-string "getprop ro.product.model")
-;;        0 -1))
+(when (executable-find "/system/bin/getprop")
+  (setq shell-file-name "/data/data/com.termux/files/usr/bin/sh")
+  (setq my_shell_output
+	(substring
+	 (shell-command-to-string "getprop ro.product.model")
+	 0 -1))
 
-(setq Info-directory-list '("/data/data/com.termux/files/usr/share/emacs/24.5/info"))
+  (setq Info-directory-list '("/data/data/com.termux/files/usr/share/emacs/24.5/info"))
 
-(setq shell-file-name "/data/data/com.termux/files/usr/bin/sh")
-(run-with-timer 0 1 'redraw-display)
+  (run-with-timer 0 1 'redraw-display)
 
-(defun resize ()
-  (interactive)
-  (if (eq (frame-height) 17)
-      (set-frame-height (selected-frame) 26)
-  (set-frame-height (selected-frame) 17)))
-
-(global-set-key (kbd "C-x w") 'resize)
+  (defun resize ()
+    (interactive)
+    (if (eq (frame-height) 17)
+	(set-frame-height (selected-frame) 26)
+      (set-frame-height (selected-frame) 17)))
+  (global-set-key (kbd "C-x w") 'resize))
 
 ;; disable the beep
 (setq visible-bell 1)
