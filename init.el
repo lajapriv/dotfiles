@@ -26,6 +26,9 @@
 
 (global-set-key (kbd "C-x w") 'resize)
 
+;; disable the beep
+(setq visible-bell 1)
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
